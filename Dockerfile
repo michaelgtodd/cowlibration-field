@@ -37,6 +37,7 @@ RUN apt-get update \
         libboost-all-dev \
         git \
         nlohmann-json3-dev \
+        libeigen3-dev \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb && \
