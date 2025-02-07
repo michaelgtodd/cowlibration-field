@@ -48,10 +48,10 @@ RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86
     rm -rf /var/lib/apt/lists/*
 
 RUN git clone https://github.com/ceres-solver/ceres-solver.git --branch 2.2.0 && \
-    cd ceres-solver &&
-    mkdir build &&
-    cd build &&
-    cmake .. &&
+    cd ceres-solver && \
+    mkdir build && \
+    cd build && \
+    cmake .. && \
     make install
 
 RUN git clone https://github.com/michaelgtodd/cowlibration-field.git && \
