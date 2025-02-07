@@ -173,7 +173,7 @@ else(CERES_WAS_INSTALLED)
 endif(CERES_WAS_INSTALLED)
 
 # Set the version.
-set(CERES_VERSION 2.2.0)
+set(CERES_VERSION 2.0.0)
 
 include(CMakeFindDependencyMacro)
 # Optional dependencies

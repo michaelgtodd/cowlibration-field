@@ -47,9 +47,16 @@ RUN apt-get update \
 	&& apt-get install -y \
 	&& rm -rf /var/lib/apt/lists/*
 
+RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb && \
+    dpkg -i cuda-keyring_1.1-1_all.deb && \
+    apt-get update && \
+    apt-get -y install cuda && \
+    rm -rf /var/lib/apt/lists/*
+
 RUN git clone https://github.com/michaelgtodd/cowlibration-field.git && \
     cd cowlibration-field && \
-    cp -r Ceres /usr/local/lib/cmake/ && \
+    cp -r Ceres /usr/lib/cmake/ && \
+    ls /usr/lib/cmake/Ceres && \
     mkdir build && \
     cd build && \
     cmake .. && \
