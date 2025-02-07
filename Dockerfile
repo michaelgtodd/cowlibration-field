@@ -51,7 +51,7 @@ RUN git clone https://github.com/ceres-solver/ceres-solver.git --branch 2.2.0 &&
     cd ceres-solver && \
     mkdir build && \
     cd build && \
-    cmake .. && \
+    CUDACXX=/usr/local/cuda-12.8/bin/nvcc cmake .. -DBUILD_EXAMPLES=OFF -DBUILD_SHARED_LIBS=ON -DBUILD_TESTING=OFF && \
     make install
 
 RUN git clone https://github.com/michaelgtodd/cowlibration-field.git && \
