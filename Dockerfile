@@ -38,13 +38,7 @@ RUN apt-get update \
         extra-cmake-modules \
         libboost-all-dev \
         git \
-	&& rm -rf /var/lib/apt/lists/*
-
-RUN apt-get update \
-	&& apt-get install -y apt-utils \
-	&& apt-get upgrade -y \
-    && apt-get install -y  apt-utils \
-	&& apt-get install -y \
+        nlohmann-json3-dev \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb && \
@@ -53,6 +47,13 @@ RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86
     apt-get -y install cuda && \
     rm -rf /var/lib/apt/lists/*
 
+RUN git clone https://github.com/ceres-solver/ceres-solver.git --branch 2.2.0 && \
+    cd ceres-solver &&
+    mkdir build &&
+    cd build &&
+    cmake .. &&
+    make install
+
 RUN git clone https://github.com/michaelgtodd/cowlibration-field.git && \
     cd cowlibration-field && \
     cp -r Ceres /usr/lib/cmake/ && \
@@ -60,7 +61,7 @@ RUN git clone https://github.com/michaelgtodd/cowlibration-field.git && \
     mkdir build && \
     cd build && \
     cmake .. && \
-    make install
+    make
 
 RUN
 
