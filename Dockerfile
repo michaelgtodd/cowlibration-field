@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM ubuntu:22.04
 LABEL Name="cowlibration"
 USER root
 ARG DEBIAN_FRONTEND=noninteractive
@@ -37,6 +37,24 @@ RUN apt-get update \
         vim \
         extra-cmake-modules \
         libboost-all-dev \
+        git \
 	&& rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update \
+	&& apt-get install -y apt-utils \
+	&& apt-get upgrade -y \
+    && apt-get install -y  apt-utils \
+	&& apt-get install -y \
+	&& rm -rf /var/lib/apt/lists/*
+
+RUN git clone https://github.com/michaelgtodd/cowlibration-field.git &&
+    cd cowlibration-field && \
+    cp -r Ceres /usr/local/lib/cmake/ &&
+    mkdir build && \
+    cd build && \
+    cmake .. && \
+    make install
+
+RUN
 
 WORKDIR /
