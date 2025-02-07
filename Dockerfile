@@ -6,7 +6,6 @@ WORKDIR /tmp
 RUN apt-get update \
 	&& apt-get install -y apt-utils \
 	&& apt-get upgrade -y \
-    && apt-get install -y  apt-utils \
 	&& apt-get install -y \
         build-essential \
         cmake \
@@ -18,7 +17,6 @@ RUN apt-get update \
         gettext \
         libz-dev \
         libssl-dev \
-        libceres-dev \
         libgoogle-glog-dev \
         python3-pip \
         libgoogle-glog-dev \
@@ -52,16 +50,14 @@ RUN git clone https://github.com/ceres-solver/ceres-solver.git --branch 2.2.0 &&
     mkdir build && \
     cd build && \
     CUDACXX=/usr/local/cuda-12.8/bin/nvcc cmake .. -DBUILD_EXAMPLES=OFF -DBUILD_SHARED_LIBS=ON -DBUILD_TESTING=OFF && \
-    make install
+    make -j install
 
 RUN git clone https://github.com/michaelgtodd/cowlibration-field.git && \
     cd cowlibration-field && \
-    cp -r Ceres /usr/lib/cmake/ && \
-    ls /usr/lib/cmake/Ceres && \
     mkdir build && \
     cd build && \
     cmake .. && \
-    make
+    make -j
 
 RUN
 
