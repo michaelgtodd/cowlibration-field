@@ -49,7 +49,7 @@ RUN apt-get update \
 
 RUN git clone https://github.com/michaelgtodd/cowlibration-field.git &&
     cd cowlibration-field && \
-    cp -r Ceres /usr/local/lib/cmake/ &&
+    cp -r Ceres /usr/local/lib/cmake/ && \
     mkdir build && \
     cd build && \
     cmake .. && \
