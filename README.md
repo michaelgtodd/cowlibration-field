@@ -8,6 +8,7 @@ Their original setup uses vcpkg -- we use alot of docker in our ecosystem so I m
 Clone this project, then run ./scripts/run_container.sh and you'll be in that checkout, mounted in a docker container, and FieldCalibration is already installed in /usr/bin so you can just run it.
 
 The docker container is big (10 gb) and could be optimized a ton - sue me. :D
+Also I only uploaded the x86 version to dockerhub - if there's interest in an ARM version I might push one of those too
 
 ## Tested on (host OS with docker installed):
 todd@mtodd-strix:~$ uname -r
