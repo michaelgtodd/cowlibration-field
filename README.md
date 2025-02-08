@@ -5,7 +5,7 @@ apriltag orientation file
 
 Their original setup uses vcpkg -- we use alot of docker in our ecosystem so I made a dockerfile version.
 
-Clone this project, then run ./scripts/run_container.sh and you'll be in that checkout, mounted in a docker container, and FieldCalibration is already installed in /usr/bin so you can just run it.
+Clone this project, then run ./scripts/run_container.sh (which will download the prebuilt container) and you'll be in that checkout, mounted in a docker container, and FieldCalibration is already installed in /usr/bin so you can just run it.
 
 The docker container is big (10 gb) and could be optimized a ton - sue me. :D
 Also I only uploaded the x86 version to dockerhub - if there's interest in an ARM version I might push one of those too
@@ -22,7 +22,7 @@ lsb_release -a
     Codename:	jammy
 ```
 
-#Original README below
+# Original README below
 
 # Field Calibrator
 Calibrate relative positions of Apriltags on the field
