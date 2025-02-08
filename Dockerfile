@@ -62,7 +62,7 @@ RUN git clone https://github.com/michaelgtodd/cowlibration-field.git && \
     make -j && \
     cp ./FieldCalibrator /usr/bin
 
-RUN pip3 install  numpy scipy matplotlib
+RUN pip3 install numpy scipy matplotlib PyQt6
 
 # #Cheap fix for sudo issues
 # RUN useradd ubuntu
