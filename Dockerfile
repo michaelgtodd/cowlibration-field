@@ -51,15 +51,39 @@ RUN git clone https://github.com/ceres-solver/ceres-solver.git --branch 2.2.0 &&
     mkdir build && \
     cd build && \
     CUDACXX=/usr/local/cuda-12.8/bin/nvcc cmake .. -DBUILD_EXAMPLES=OFF -DBUILD_SHARED_LIBS=ON -DBUILD_TESTING=OFF && \
-    make -j install
+    make -j4 install && \
+    cp /usr/local/lib/cmake/Ceres/CeresConfig.cmake /usr/local/lib/cmake/Ceres/ceresConfig.cmake
 
 RUN git clone https://github.com/michaelgtodd/cowlibration-field.git && \
     cd cowlibration-field && \
     mkdir build && \
     cd build && \
     cmake .. && \
-    make -j
+    make -j && \
+    cp ./FieldCalibrator /usr/bin
 
-RUN
 
-WORKDIR /
+
+# #Cheap fix for sudo issues
+# RUN usermod -aG sudo ubuntu \
+#     && echo 'ubuntu:ubuntu' | chpasswd \
+#     && echo "ubuntu ALL=(ALL) NOPASSWD:ALL" | (sudo su -c 'EDITOR="tee -a" visudo') \
+#     && useradd -m -s $(which bash) -G sudo ubuntu1 \
+#     && echo 'ubuntu1:ubuntu' | chpasswd \
+#     && echo "ubuntu1 ALL=(ALL) NOPASSWD:ALL" | (sudo su -c 'EDITOR="tee -a" visudo') \
+#     && useradd -m -s $(which bash) -G sudo ubuntu2 \
+#     && echo 'ubuntu2:ubuntu' | chpasswd \
+#     && echo "ubuntu2 ALL=(ALL) NOPASSWD:ALL" | (sudo su -c 'EDITOR="tee -a" visudo') \
+#     && useradd -m -s $(which bash) -G sudo ubuntu3 \
+#     && echo 'ubuntu3:ubuntu' | chpasswd \
+#     && echo "ubuntu3 ALL=(ALL) NOPASSWD:ALL" | (sudo su -c 'EDITOR="tee -a" visudo') \
+#     && useradd -m -s $(which bash) -G sudo ubuntu4 \
+#     && echo 'ubuntu4:ubuntu' | chpasswd \
+#     && echo "ubuntu4 ALL=(ALL) NOPASSWD:ALL" | (sudo su -c 'EDITOR="tee -a" visudo')
+
+
+SHELL ["/bin/sh", "-c"]
+
+RUN mkdir /mnt/working
+
+WORKDIR /mnt/working
