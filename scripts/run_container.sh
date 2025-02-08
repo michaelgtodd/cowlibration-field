@@ -248,7 +248,7 @@ if [[ "${DOCKER_RUNNING_CMD}" -eq 1 || "${COMMAND_NEEDS_LAUNCH}" -eq 0 ]]; then
         ${RENDERING_FLAGS} \
         ${USER_FLAGS} \
         --ipc="host" \
-        --name="michaelgtodd/cowlibration_docker" \
+        --name="cowlibration_docker" \
         -e XAUTHORITY=${XAUTH} \
         -e XDG_RUNTIME_DIR="/tmp/.xdgtmp" \
         -v /etc/localtime:/etc/localtime:ro \
