@@ -1,3 +1,27 @@
+# Cowlibration - Docker Remix
+
+This is a fork of https://github.com/TheHolyCows/cowlibration-field - a library from the FRC team the Holy Cows to use videos to generate a field
+apriltag orientation file
+
+Their original setup uses vcpkg -- we use alot of docker in our ecosystem so I made a dockerfile version.
+
+Clone this project, then run ./scripts/run_container.sh and you'll be in that checkout, mounted in a docker container, and FieldCalibration is already installed in /usr/bin so you can just run it.
+
+The docker container is big (10 gb) and could be optimized a ton - sue me. :D
+
+## Tested on (host OS with docker installed):
+todd@mtodd-strix:~$ uname -r
+5.15.167.4-microsoft-standard-WSL2
+todd@mtodd-strix:~$ lsb_release -a
+No LSB modules are available.
+Distributor ID:	Ubuntu
+Description:	Ubuntu 22.04.5 LTS
+Release:	22.04
+Codename:	jammy
+
+
+#Original README below
+
 # Field Calibrator
 Calibrate relative positions of Apriltags on the field
 

@@ -42,7 +42,7 @@ SUDO_MODE=
 DOCKER_RUNNING_CMD=1
 DOCKER_ARCH=latest
 
-CONTAINER_ID=$(docker ps -aql --filter "ancestor=cowlibration:${DOCKER_ARCH}" --filter "status=running")
+CONTAINER_ID=$(docker ps -aql --filter "ancestor=michaelgtodd/cowlibration:${DOCKER_ARCH}" --filter "status=running")
 
 usage() { infomsg "Usage: ${0} [-a] [-d] [-k] [-h] [-r] [-c <string>]\n\t-a Force arm64 docker container\n\t-i Force x86_64 docker container\n\t-d Run docker container in detached mode\n\t-k Kill running docker instance\n\t-r Sudo access mapping\n\t-c <string> Run a command in the docker container\n\t-h Display this help text \n\n" 1>&2; exit 1; }
 while getopts "ac:dfhikr" o; do
@@ -50,7 +50,7 @@ while getopts "ac:dfhikr" o; do
         a)
             DOCKER_ARCH=arm64
             if [ ${INET_ONLINE} -eq 0 ]; then
-                docker pull cowlibration || true
+                docker pull michaelgtodd/cowlibration || true
             fi
             ;;
         d)
@@ -62,7 +62,7 @@ while getopts "ac:dfhikr" o; do
         i)
             DOCKER_ARCH=amd64
             if [ ${INET_ONLINE} -eq 0 ]; then
-                docker pull cowlibration || true
+                docker pull michaelgtodd/cowlibration || true
             fi
             ;;
         k)
@@ -92,7 +92,7 @@ while getopts "ac:dfhikr" o; do
 done
 shift $((OPTIND-1))
 
-CONTAINER_ID=$(docker ps -aql --filter "ancestor=cowlibration:${DOCKER_ARCH}" --filter "status=running")
+CONTAINER_ID=$(docker ps -aql --filter "ancestor=michaelgtodd/cowlibration:${DOCKER_ARCH}" --filter "status=running")
 
 if [ ! -z "${CONTAINER_ID}" ] && [ -z "${FORCED_LAUNCH}" ]
 then
@@ -160,7 +160,7 @@ touch "$(pwd)/.parallel/will-cite"
 
 if [ ${INET_ONLINE} -eq 0 ]; then
     infomsg "Checking for container updates..."
-    docker pull cowlibration:${DOCKER_ARCH} || true
+    docker pull michaelgtodd/cowlibration:${DOCKER_ARCH} || true
 fi
 
 if [ ! -z "${DETACHED_MODE}" ];
@@ -248,7 +248,7 @@ if [[ "${DOCKER_RUNNING_CMD}" -eq 1 || "${COMMAND_NEEDS_LAUNCH}" -eq 0 ]]; then
         ${RENDERING_FLAGS} \
         ${USER_FLAGS} \
         --ipc="host" \
-        --name="cowlibration_docker" \
+        --name="michaelgtodd/cowlibration_docker" \
         -e XAUTHORITY=${XAUTH} \
         -e XDG_RUNTIME_DIR="/tmp/.xdgtmp" \
         -v /etc/localtime:/etc/localtime:ro \
@@ -264,10 +264,10 @@ if [[ "${DOCKER_RUNNING_CMD}" -eq 1 || "${COMMAND_NEEDS_LAUNCH}" -eq 0 ]]; then
         ${TRAJ_CMD} \
         --net=host \
         -e HOME=/mnt/working \
-        cowlibration:${DOCKER_ARCH} \
+        michaelgtodd/cowlibration:${DOCKER_ARCH} \
         /bin/bash
 
-    CONTAINER_ID=$(docker ps -aql --filter "ancestor=cowlibration:latest" --filter "status=running")
+    CONTAINER_ID=$(docker ps -aql --filter "ancestor=michaelgtodd/cowlibration:latest" --filter "status=running")
 fi
 
 if [[ "${DOCKER_RUNNING_CMD}" -eq 0 ]]; then
