@@ -65,21 +65,23 @@ RUN git clone https://github.com/michaelgtodd/cowlibration-field.git && \
 
 
 # #Cheap fix for sudo issues
-# RUN usermod -aG sudo ubuntu \
-#     && echo 'ubuntu:ubuntu' | chpasswd \
-#     && echo "ubuntu ALL=(ALL) NOPASSWD:ALL" | (sudo su -c 'EDITOR="tee -a" visudo') \
-#     && useradd -m -s $(which bash) -G sudo ubuntu1 \
-#     && echo 'ubuntu1:ubuntu' | chpasswd \
-#     && echo "ubuntu1 ALL=(ALL) NOPASSWD:ALL" | (sudo su -c 'EDITOR="tee -a" visudo') \
-#     && useradd -m -s $(which bash) -G sudo ubuntu2 \
-#     && echo 'ubuntu2:ubuntu' | chpasswd \
-#     && echo "ubuntu2 ALL=(ALL) NOPASSWD:ALL" | (sudo su -c 'EDITOR="tee -a" visudo') \
-#     && useradd -m -s $(which bash) -G sudo ubuntu3 \
-#     && echo 'ubuntu3:ubuntu' | chpasswd \
-#     && echo "ubuntu3 ALL=(ALL) NOPASSWD:ALL" | (sudo su -c 'EDITOR="tee -a" visudo') \
-#     && useradd -m -s $(which bash) -G sudo ubuntu4 \
-#     && echo 'ubuntu4:ubuntu' | chpasswd \
-#     && echo "ubuntu4 ALL=(ALL) NOPASSWD:ALL" | (sudo su -c 'EDITOR="tee -a" visudo')
+# RUN useradd ubuntu
+
+RUN useradd -m -s $(which bash) -G sudo ubuntu  \
+    && echo 'ubuntu:ubuntu' | chpasswd \
+    && echo "ubuntu ALL=(ALL) NOPASSWD:ALL" | (sudo su -c 'EDITOR="tee -a" visudo') \
+    && useradd -m -s $(which bash) -G sudo ubuntu1 \
+    && echo 'ubuntu1:ubuntu' | chpasswd \
+    && echo "ubuntu1 ALL=(ALL) NOPASSWD:ALL" | (sudo su -c 'EDITOR="tee -a" visudo') \
+    && useradd -m -s $(which bash) -G sudo ubuntu2 \
+    && echo 'ubuntu2:ubuntu' | chpasswd \
+    && echo "ubuntu2 ALL=(ALL) NOPASSWD:ALL" | (sudo su -c 'EDITOR="tee -a" visudo') \
+    && useradd -m -s $(which bash) -G sudo ubuntu3 \
+    && echo 'ubuntu3:ubuntu' | chpasswd \
+    && echo "ubuntu3 ALL=(ALL) NOPASSWD:ALL" | (sudo su -c 'EDITOR="tee -a" visudo') \
+    && useradd -m -s $(which bash) -G sudo ubuntu4 \
+    && echo 'ubuntu4:ubuntu' | chpasswd \
+    && echo "ubuntu4 ALL=(ALL) NOPASSWD:ALL" | (sudo su -c 'EDITOR="tee -a" visudo')
 
 
 SHELL ["/bin/sh", "-c"]
