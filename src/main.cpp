@@ -502,6 +502,11 @@ int main(int argc, char **argv)
 
     for (const auto& [tag_id, pose] : poses)
     {
+        if (ideal_map.find(tag_id) == ideal_map.end())
+        {
+            std::cout << "Got a bogus tag: " << tag_id << std::endl;
+            continue;
+        }
         // Transformation from pinned tag
         Eigen::Matrix<double, 4, 4> transform = Eigen::Matrix<double, 4, 4>::Identity();
 
