@@ -11,15 +11,16 @@ The docker container is big (10 gb) and could be optimized a ton - sue me. :D
 Also I only uploaded the x86 version to dockerhub - if there's interest in an ARM version I might push one of those too
 
 ## Tested on (host OS with docker installed):
-todd@mtodd-strix:~$ uname -r
-5.15.167.4-microsoft-standard-WSL2
-todd@mtodd-strix:~$ lsb_release -a
-No LSB modules are available.
-Distributor ID:	Ubuntu
-Description:	Ubuntu 22.04.5 LTS
-Release:	22.04
-Codename:	jammy
-
+```
+uname -r
+    5.15.167.4-microsoft-standard-WSL2
+lsb_release -a
+    No LSB modules are available.
+    Distributor ID:	Ubuntu
+    Description:	Ubuntu 22.04.5 LTS
+    Release:	22.04
+    Codename:	jammy
+```
 
 #Original README below
 
