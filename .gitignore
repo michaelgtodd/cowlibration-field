@@ -2,3 +2,6 @@
 .venv
 build
 .bash_history
+.cache
+.viminfo
+output.*
